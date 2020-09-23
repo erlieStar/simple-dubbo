@@ -10,13 +10,13 @@ import java.util.Map;
  */
 public class ServiceMap {
 
-    private Map<String, Object> serviceMap = Maps.newHashMap();
+    private static Map<String, Object> serviceMap = Maps.newHashMap();
 
-    public void registryService(String serviceKey, Class<?> clazz) {
+    public static void registryService(String serviceKey, Class<?> clazz) {
 
     }
 
-    public Object getService(String serviceKey) {
+    public static Object getService(String serviceKey) {
         return serviceMap.get(serviceKey);
     }
 }

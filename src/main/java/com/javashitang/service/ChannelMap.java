@@ -1,7 +1,7 @@
 package com.javashitang.service;
 
 import com.google.common.collect.Maps;
-import com.javashitang.remoting.NettyClient;
+import com.javashitang.remoting.transport.NettyClient;
 import io.netty.channel.Channel;
 
 import java.net.InetSocketAddress;

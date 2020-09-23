@@ -1,4 +1,4 @@
-package com.javashitang.remoting;
+package com.javashitang.remoting.transport;
 
 /**
  * @author lilimin
