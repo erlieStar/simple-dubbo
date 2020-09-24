@@ -37,7 +37,7 @@ public class NettyClient {
                 ChannelPipeline pipeline = ch.pipeline();
                 pipeline.addLast(new KryoDecoder(serializer, RpcRequest.class));
                 pipeline.addLast(new KryoEncoder(serializer, RpcResponse.class));
-                pipeline.addLast(new NettyServerHandler());
+                pipeline.addLast(new NettyClientHandler());
             }
         });
     }

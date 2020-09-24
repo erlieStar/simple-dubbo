@@ -1,6 +1,9 @@
 package com.javashitang.remoting.transport;
 
 import com.javashitang.remoting.exchange.RpcRequest;
+import com.javashitang.remoting.exchange.RpcResponse;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author lilimin
@@ -9,7 +12,9 @@ import com.javashitang.remoting.exchange.RpcRequest;
 public class NettyTransport implements Transporter {
 
     @Override
-    public Object sendRequest(RpcRequest request) {
+    public CompletableFuture<RpcResponse> sendRequest(RpcRequest request) {
+        CompletableFuture<RpcResponse> future = new CompletableFuture();
+
         return null;
     }
 }

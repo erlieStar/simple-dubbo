@@ -2,12 +2,14 @@ package com.javashitang.proxy;
 
 import com.javashitang.config.ReferenceConfig;
 import com.javashitang.remoting.exchange.RpcRequest;
+import com.javashitang.remoting.exchange.RpcResponse;
 import com.javashitang.remoting.transport.NettyTransport;
 import com.javashitang.remoting.transport.Transporter;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author lilimin
@@ -37,7 +39,9 @@ public class RpcClientProxy implements InvocationHandler {
                 .paramTypes(method.getParameterTypes())
                 .parameters(method.getParameters())
                 .build();
-        Object result = transporter.sendRequest(rpcRequest);
-        return result;
+        RpcResponse response = null;
+        CompletableFuture<RpcResponse> future = (CompletableFuture<RpcResponse>) transporter.sendRequest(rpcRequest);
+        response = future.get();
+        return response.getResult();
     }
 }
