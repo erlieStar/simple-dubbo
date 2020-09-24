@@ -1,6 +1,9 @@
 package com.javashitang.proxy;
 
-import com.javashitang.remoting.dto.RpcRequest;
+import com.javashitang.config.ReferenceConfig;
+import com.javashitang.remoting.exchange.RpcRequest;
+import com.javashitang.remoting.transport.NettyTransport;
+import com.javashitang.remoting.transport.Transporter;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -12,6 +15,14 @@ import java.lang.reflect.Proxy;
  */
 public class RpcClientProxy implements InvocationHandler {
 
+    private ReferenceConfig referenceConfig;
+    private Transporter transporter;
+
+    public RpcClientProxy(ReferenceConfig referenceConfig) {
+        this.referenceConfig = referenceConfig;
+        transporter = new NettyTransport();
+    }
+
     public <T> T getProxy(Class<T> clazz) {
         return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class<?>[]{clazz}, this);
     }
@@ -22,10 +33,11 @@ public class RpcClientProxy implements InvocationHandler {
                 .requestId(RpcRequest.INVOKE_ID.getAndIncrement())
                 .interfaceName(method.getDeclaringClass().getName())
                 .methodName(method.getName())
-                .version("")
+                .version(referenceConfig.getVersion())
                 .paramTypes(method.getParameterTypes())
                 .parameters(method.getParameters())
                 .build();
-        return null;
+        Object result = transporter.sendRequest(rpcRequest);
+        return result;
     }
 }

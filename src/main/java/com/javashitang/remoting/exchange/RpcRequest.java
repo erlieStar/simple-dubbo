@@ -1,4 +1,4 @@
-package com.javashitang.remoting.dto;
+package com.javashitang.remoting.exchange;
 
 import lombok.Builder;
 import lombok.Data;

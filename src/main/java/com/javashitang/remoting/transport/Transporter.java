@@ -1,6 +1,6 @@
 package com.javashitang.remoting.transport;
 
-import com.javashitang.remoting.dto.RpcRequest;
+import com.javashitang.remoting.exchange.RpcRequest;
 
 /**
  * @author lilimin

@@ -1,8 +1,8 @@
 package com.javashitang.remoting.transport;
 
 import com.javashitang.exception.RpcException;
-import com.javashitang.remoting.dto.RpcRequest;
-import com.javashitang.remoting.dto.RpcResponse;
+import com.javashitang.remoting.exchange.RpcRequest;
+import com.javashitang.remoting.exchange.RpcResponse;
 import com.javashitang.service.ServiceMap;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;

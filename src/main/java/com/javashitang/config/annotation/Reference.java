@@ -18,6 +18,4 @@ import java.lang.annotation.Target;
 public @interface Reference {
 
     String version() default "";
-
-    String group() default "";
 }
